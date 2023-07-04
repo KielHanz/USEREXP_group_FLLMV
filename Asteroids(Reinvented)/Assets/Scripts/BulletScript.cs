@@ -9,11 +9,11 @@ public class BulletScript : MonoBehaviour
 
     private void Update()
     {
-        bulletDespawn();
+        DespawnBullet();
         transform.position += transform.right * Time.deltaTime * bulletSpeed;
     }
 
-    private void bulletDespawn()
+    private void DespawnBullet()
     {
         bulletDespawnTime -= Time.deltaTime;
         if (bulletDespawnTime <= 0)
@@ -22,7 +22,7 @@ public class BulletScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(gameObject);
     }

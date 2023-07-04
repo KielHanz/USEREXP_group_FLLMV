@@ -54,13 +54,16 @@ public class PlayerScript : MonoBehaviour
         GetMousePos();
         if(_playerAmmo > 0)
         {
-            playerShoot();
+            ShootWeapon();
         }
         
-        shootTimer -= Time.deltaTime;
         if (shootTimer <= 0)
         {
             canShoot = true;
+        }
+        else
+        {
+            shootTimer -= Time.deltaTime;
         }
     }
 
@@ -147,16 +150,18 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public void playerShoot()
+    public void ShootWeapon()
     {
         if (Input.GetMouseButtonUp(0))
         {
             if (canShoot == true)
             {
                 Instantiate(bulletGameObject, bulletTransform.position, bulletTransform.rotation);
-                shootTimer += timeToShoot;
+                shootTimer = timeToShoot;
                 canShoot = false;
                 _playerAmmo--;
+
+                Debug.Log("Ammo Remaining: " + _playerAmmo);
             }
         }
     }
