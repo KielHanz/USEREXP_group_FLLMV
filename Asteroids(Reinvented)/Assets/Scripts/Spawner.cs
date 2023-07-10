@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        asteroidSpawnCooldown = 3;
+        asteroidSpawnCooldown = 5;
         currentAsteroidSpawnCooldown = asteroidSpawnCooldown;
         spawnCollisionCheckradius = 5;
         SpawnAsteroid(1);
