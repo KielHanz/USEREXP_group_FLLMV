@@ -22,9 +22,9 @@ public class BulletScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        EnemyScript enemy = collision.GetComponent<EnemyScript>();
+        EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
         if (enemy != null)
         {
             enemy.TakeDamage();

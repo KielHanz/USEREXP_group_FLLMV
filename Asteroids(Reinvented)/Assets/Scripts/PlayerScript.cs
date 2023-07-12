@@ -53,6 +53,11 @@ public class PlayerScript : MonoBehaviour
         {
             PlayerTakeDmg(1);
         }
+
+        if (collision.gameObject.GetComponent<StationaryAsteroid>() != null)
+        {
+            PlayerTakeDmg(1);
+        }
     }
 
     private void Start()
