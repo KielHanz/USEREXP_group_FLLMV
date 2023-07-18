@@ -11,6 +11,9 @@ public class EnemyScript : MonoBehaviour
     private Vector3 travelDirection;
     private float speed;
     private float asteroidSize;
+    private float distanceSub = 20; //Usual outside asteroids
+
+    public bool inner;
 
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
@@ -65,7 +68,7 @@ public class EnemyScript : MonoBehaviour
         direction = player.transform.position - this.transform.position;
         travelDirection = direction + new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0);
         travelDirection.Normalize();
-        asteroidSize = Random.Range(0.3f, 3f);
+        asteroidSize = Random.Range(0.3f, 1.3f); //Random.Range(0.3f, 3f);
         _enemyHP = 2 * asteroidSize;
         transform.localScale = new Vector3(asteroidSize, asteroidSize, 0);
 
@@ -78,8 +81,14 @@ public class EnemyScript : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if(Mathf.Abs(this.transform.position.x - player.transform.position.x) >= 20 ||
-            Mathf.Abs(this.transform.position.y - player.transform.position.y) >= 20)
+        //Meant for asteroids inside level
+        if(inner == true)
+        {
+            distanceSub = 40;
+        }
+
+        if(Mathf.Abs(this.transform.position.x - player.transform.position.x) >= distanceSub ||
+            Mathf.Abs(this.transform.position.y - player.transform.position.y) >= distanceSub) // both 20
         {
             Destroy(gameObject);
         }
