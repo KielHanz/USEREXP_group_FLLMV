@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -37,14 +38,8 @@ public class PlayerScript : MonoBehaviour
     private Vector2 movementVector;
     #endregion
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    EnemyScript enemy = collision.GetComponent<EnemyScript>();
-    //    if (enemy != null)
-    //    {
-    //        PlayerTakeDmg(1);
-    //    }
-    //}
+    public int scrapCount;
+    public TextMeshProUGUI scrapCountText;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -68,11 +63,12 @@ public class PlayerScript : MonoBehaviour
         _maxHp = 3;
         _playerHP = _maxHp;
         playerAmmoUI.text = "Ammo: " + _playerAmmo.ToString();
+        scrapCount = 0;
+        scrapCountText.SetText(scrapCount.ToString());
     }
 
     private void Update()
     {
-
         GetMousePos();
         if (_playerAmmo > 0)
         {
@@ -96,8 +92,6 @@ public class PlayerScript : MonoBehaviour
 
     private void PlayerMovement()
     {
-
-
         float inputX = Input.GetAxis("Horizontal");
         float inputY = Input.GetAxis("Vertical");
 
@@ -119,19 +113,14 @@ public class PlayerScript : MonoBehaviour
         //accelerate player
         if (isMoving)
         {
-
             currentSpeed += accel * Time.deltaTime;
             playerBody.velocity = input * currentSpeed * Time.deltaTime;
-
         }
         else
         {
-
             currentSpeed = 0;
             playerBody.velocity -= playerBody.velocity * 0.1f * Time.deltaTime;
-
         }
-
     }
 
 
@@ -170,5 +159,11 @@ public class PlayerScript : MonoBehaviour
                 Debug.Log("Ammo Remaining: " + _playerAmmo);
             }
         }
+    }
+
+    public void AddScraps(int amount)
+    {
+        scrapCount += amount;
+        scrapCountText.SetText(scrapCount.ToString());
     }
 }
