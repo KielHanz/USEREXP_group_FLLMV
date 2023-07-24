@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Rendering;
+using UnityEngine.EventSystems;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] public float m_Speed = 5f;
     [SerializeField] Rigidbody2D playerBody;
     public bool isAlive;
-    private float _maxHp;
+    public float _maxHp;
     public float _playerHP;
     public int _playerAmmo = 30;
     public Image healthBar;
@@ -37,6 +38,9 @@ public class PlayerScript : MonoBehaviour
     private Vector3 lastVelocity;
     private Vector2 movementVector;
     #endregion
+
+    [SerializeField] private GameObject scrapMenu;
+    private bool isScrapMenuOpen = false;
 
     public int scrapCount;
     public TextMeshProUGUI scrapCountText;
@@ -83,6 +87,12 @@ public class PlayerScript : MonoBehaviour
         {
             shootTimer -= Time.deltaTime;
         }
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            ToggleMenu();
+        }
+
     }
 
     private void FixedUpdate()
@@ -145,6 +155,11 @@ public class PlayerScript : MonoBehaviour
 
     public void ShootWeapon()
     {
+        if (!IsMouseOverScrapMenu())
+        {
+            return;
+        }
+
         if (Input.GetMouseButtonUp(0))
         {
             if (canShoot == true)
@@ -165,5 +180,49 @@ public class PlayerScript : MonoBehaviour
     {
         scrapCount += amount;
         scrapCountText.SetText(scrapCount.ToString());
+    }
+
+    public void DeductScraps(int amount)
+    {
+        scrapCount -= amount;
+        scrapCount = Mathf.Max(scrapCount, 0);
+        scrapCountText.SetText(scrapCount.ToString());
+    }
+
+    public void AddAmmo(int amount)
+    {
+        _playerAmmo += amount;
+        playerAmmoUI.text = "Ammo: " + _playerAmmo.ToString();
+    }
+
+    public void Heal(int amount)
+    {
+        _playerHP += amount;
+        _playerHP = Mathf.Min(_playerHP, _maxHp);
+        healthBar.fillAmount = _playerHP / _maxHp;
+    }
+
+    private void ToggleMenu()
+    {
+        isScrapMenuOpen = !isScrapMenuOpen;
+        scrapMenu.SetActive(isScrapMenuOpen);
+    }
+
+    private bool IsMouseOverScrapMenu()
+    {
+        PointerEventData pointerEventData = new PointerEventData(EventSystem.current);
+        pointerEventData.position = Input.mousePosition;
+
+        List<RaycastResult> raycastResultList = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointerEventData, raycastResultList);
+        for (int i = 0; i < raycastResultList.Count; i++)
+        {
+            if (raycastResultList[i].gameObject.GetComponent<UIElement>() != null)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

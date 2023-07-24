@@ -7,11 +7,11 @@ public class Scraps : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float movementTimer;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<PlayerScript>() != null)
+        if (collision.GetComponent<PlayerScript>() != null)
         {
-            PlayerScript playerScript = collision.gameObject.GetComponent<PlayerScript>();
+            PlayerScript playerScript = collision.GetComponent<PlayerScript>();
             playerScript.AddScraps(Random.Range(2, 6));
             Destroy(gameObject);
         }

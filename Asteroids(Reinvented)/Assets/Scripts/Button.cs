@@ -9,8 +9,10 @@ public class Button : MonoBehaviour
 
     private BulletScript bullet;
     [SerializeField] private GameObject activateObject;
+    [SerializeField] Sprite[] spriteChange;
 
-    private SpriteRenderer alpha;
+    private SpriteRenderer targetSprite;
+    private SpriteRenderer spriteRenderer;
     private Color objectAlpha;
     private BoxCollider2D objectCollider;
 
@@ -20,7 +22,8 @@ public class Button : MonoBehaviour
     private void Start()
     {
         timeText.enabled = false;
-        alpha = activateObject.GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        targetSprite = activateObject.GetComponent<SpriteRenderer>();
         objectCollider = activateObject.GetComponent<BoxCollider2D>();
     }
 
@@ -45,10 +48,11 @@ public class Button : MonoBehaviour
 
     private void CloseDoor()
     {
+        spriteRenderer.sprite = spriteChange[0];
         isDoorOpen = false;
-        objectAlpha = alpha.color;
+        objectAlpha = targetSprite.color;
         objectAlpha.a = 1f;
-        alpha.color = objectAlpha;
+        targetSprite.color = objectAlpha;
         timeText.enabled = false;
 
         objectCollider.enabled = true;
@@ -56,10 +60,11 @@ public class Button : MonoBehaviour
 
     private void OpenDoor()
     {
+        spriteRenderer.sprite = spriteChange[1];
         isDoorOpen = true;
-        objectAlpha = alpha.color;
+        objectAlpha = targetSprite.color;
         objectAlpha.a = 0.25f;
-        alpha.color = objectAlpha;
+        targetSprite.color = objectAlpha;
 
         objectCollider.enabled = false;
 

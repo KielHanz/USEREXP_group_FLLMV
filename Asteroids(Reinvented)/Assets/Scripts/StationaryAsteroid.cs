@@ -25,11 +25,23 @@ public class StationaryAsteroid : MonoBehaviour
     void Start()
     {
         rotationSpeed = Random.Range(10f, 40f);
+        RandomRotate();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Rotate(0, 0, rotationDirection * rotationSpeed * Time.deltaTime);
+    }
+
+    private void  RandomRotate()
+    {
+        rotationDirection = Random.Range(-1, 2);
+
+        if (rotationDirection == 0)
+        {
+            RandomRotate();
+        }
     }
 }
