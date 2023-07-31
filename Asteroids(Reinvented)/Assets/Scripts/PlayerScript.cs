@@ -15,9 +15,12 @@ public class PlayerScript : MonoBehaviour
     public float _maxHp;
     public float _playerHP;
     public int _playerAmmo = 30;
+    private int _puzzlePiecesCollected;
+    public GameObject[] _puzzlePieces;
     public Image healthBar;
     public TMP_Text playerAmmoUI;
     public GameObject bulletObject;
+    public TextMeshProUGUI _puzzlePiecesText;
 
     #region Player Addons
     [SerializeField] private Camera mainCamera;
@@ -62,6 +65,9 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         playerBody = GetComponent<Rigidbody2D>();
+        _puzzlePieces = GameObject.FindGameObjectsWithTag("PuzzlePiece");
+        _puzzlePiecesText.SetText("Puzzle Pieces Collected: 0/" + _puzzlePieces.Length);
+        _puzzlePiecesCollected = 0;
         isAlive = true;
         canShoot = false;
         _maxHp = 3;
@@ -224,5 +230,11 @@ public class PlayerScript : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void UpdatePuzzlePiecesCollected()
+    {
+        _puzzlePiecesCollected++;
+        _puzzlePiecesText.SetText("Puzzle Pieces Collected: " + _puzzlePiecesCollected + "/" + _puzzlePieces.Length);
     }
 }
