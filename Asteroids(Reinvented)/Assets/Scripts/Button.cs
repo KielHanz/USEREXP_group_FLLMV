@@ -19,12 +19,17 @@ public class Button : MonoBehaviour
     private bool isDoorOpen;
     private float currentTime = 0;
     [SerializeField] private float timer;
+
+    private ObjectiveHolder objectiveHolder;
+    //public TMP_Text Objective;
+
     private void Start()
     {
         timeText.enabled = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         targetSprite = activateObject.GetComponent<SpriteRenderer>();
         objectCollider = activateObject.GetComponent<BoxCollider2D>();
+        objectiveHolder = GetComponent<ObjectiveHolder>();
     }
 
     private void Update()
@@ -32,6 +37,7 @@ public class Button : MonoBehaviour
         if (isDoorOpen)
         {
             Timer(timer);
+
         }
     }
 
@@ -42,7 +48,8 @@ public class Button : MonoBehaviour
         if (bullet != null)
         {
             OpenDoor();
-
+            objectiveHolder.ChangeObjective1Color();
+            //Objective.color = Color.green;
         }
     }
 
@@ -77,7 +84,7 @@ public class Button : MonoBehaviour
         float maxTime = time;
         timeText.text = "" + (int)currentTime;
 
-        Debug.Log(currentTime);
+        //Debug.Log(currentTime);
         if (currentTime > 0)
         {
             timeText.enabled = true;
