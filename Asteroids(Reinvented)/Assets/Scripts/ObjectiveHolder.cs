@@ -7,9 +7,11 @@ public class ObjectiveHolder : MonoBehaviour
 {
     public TMP_Text Objective;
 
-    public void ChangeObjective1Color()
+    public void ChangeObjectiveColor()
     {
-        
-        Objective.color = Color.green;
+        if (Objective != null)
+        {
+            Objective.color = Color.green;
+        }
     }
 }

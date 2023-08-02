@@ -15,8 +15,7 @@ public class PlayerScript : MonoBehaviour
     public float _maxHp;
     public float _playerHP;
     public int _playerAmmo = 30;
-    private int _puzzlePiecesCollected;
-    public GameObject[] _puzzlePieces;
+    public int _puzzlePiecesCollected;
     public Image healthBar;
     public TMP_Text playerAmmoUI;
     public GameObject bulletObject;
@@ -65,8 +64,12 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         playerBody = GetComponent<Rigidbody2D>();
-        _puzzlePieces = GameObject.FindGameObjectsWithTag("PuzzlePiece");
-        _puzzlePiecesText.SetText("Puzzle Pieces Collected: 0/" + _puzzlePieces.Length);
+
+        if (_puzzlePiecesText!= null)
+        {
+            _puzzlePiecesText.SetText("Puzzle Pieces Collected: 0/" + GameManager.Instance._puzzlePieces.Count);
+        }
+
         _puzzlePiecesCollected = 0;
         isAlive = true;
         canShoot = false;
@@ -235,6 +238,6 @@ public class PlayerScript : MonoBehaviour
     public void UpdatePuzzlePiecesCollected()
     {
         _puzzlePiecesCollected++;
-        _puzzlePiecesText.SetText("Puzzle Pieces Collected: " + _puzzlePiecesCollected + "/" + _puzzlePieces.Length);
+        _puzzlePiecesText.SetText("Puzzle Pieces Collected: " + _puzzlePiecesCollected + "/" + GameManager.Instance._puzzlePieces.Count);
     }
 }

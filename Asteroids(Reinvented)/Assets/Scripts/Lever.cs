@@ -28,6 +28,9 @@ public class Lever : MonoBehaviour
             lever.flipX = true;
             OpenDoor();
 
+            ObjectiveHolder objective = this.GetComponent<ObjectiveHolder>();
+            objective.ChangeObjectiveColor();
+
         }
     }
 

@@ -13,6 +13,11 @@ public class PuzzlePiece : MonoBehaviour
         {
             PlayerScript playerScript = collision.GetComponent<PlayerScript>();
             playerScript.UpdatePuzzlePiecesCollected();
+            if (playerScript._puzzlePiecesCollected >= GameManager.Instance._puzzlePieces.Count)
+            {
+                ObjectiveHolder objective = playerScript.GetComponent<ObjectiveHolder>();
+                objective.ChangeObjectiveColor();
+            }
             Destroy(gameObject);
         }
     }
@@ -22,5 +27,6 @@ public class PuzzlePiece : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = _puzzleSprites[Random.Range(0, 6)];
+        GameManager.Instance._puzzlePieces.Add(this.gameObject);
     }
 }

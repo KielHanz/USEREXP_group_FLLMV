@@ -48,8 +48,7 @@ public class Button : MonoBehaviour
         if (bullet != null)
         {
             OpenDoor();
-            objectiveHolder.ChangeObjective1Color();
-            //Objective.color = Color.green;
+            objectiveHolder.ChangeObjectiveColor();
         }
     }
 
