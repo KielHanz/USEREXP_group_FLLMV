@@ -30,7 +30,6 @@ public class Lever : MonoBehaviour
 
             ObjectiveHolder objective = this.GetComponent<ObjectiveHolder>();
             objective.ChangeObjectiveColor();
-
         }
     }
 

@@ -158,7 +158,8 @@ public class PlayerScript : MonoBehaviour
 
         if (_playerHP <= 0)
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 

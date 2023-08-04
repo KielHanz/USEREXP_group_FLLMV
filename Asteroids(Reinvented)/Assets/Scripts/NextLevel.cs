@@ -7,6 +7,8 @@ public class NextLevel : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        PlayerScript player = other.gameObject.GetComponent<PlayerScript>();
+        if(player != null)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

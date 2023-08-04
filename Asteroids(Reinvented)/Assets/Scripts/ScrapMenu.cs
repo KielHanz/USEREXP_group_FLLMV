@@ -5,7 +5,7 @@ using TMPro;
 
 public class ScrapMenu : MonoBehaviour
 {
-    private PlayerScript _player;
+    [SerializeField] private PlayerScript _player;
     [SerializeField] private int _repairShipCost;
     [SerializeField] private int _craftAmmoCost;
     [SerializeField] private TextMeshProUGUI _repairCost;
