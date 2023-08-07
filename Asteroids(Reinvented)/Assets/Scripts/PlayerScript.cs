@@ -18,7 +18,6 @@ public class PlayerScript : MonoBehaviour
     public int _puzzlePiecesCollected;
     public Image healthBar;
     public TMP_Text playerAmmoUI;
-    public GameObject bulletObject;
     public TextMeshProUGUI _puzzlePiecesText;
 
     #region Player Addons
@@ -65,11 +64,6 @@ public class PlayerScript : MonoBehaviour
     {
         playerBody = GetComponent<Rigidbody2D>();
 
-        if (_puzzlePiecesText!= null)
-        {
-            _puzzlePiecesText.SetText("Puzzle Pieces Collected: 0/" + GameManager.Instance._puzzlePieces.Count);
-        }
-
         _puzzlePiecesCollected = 0;
         isAlive = true;
         canShoot = false;
@@ -78,6 +72,11 @@ public class PlayerScript : MonoBehaviour
         playerAmmoUI.text = "Ammo: " + _playerAmmo.ToString();
         scrapCount = 0;
         scrapCountText.SetText(scrapCount.ToString());
+
+        if (_puzzlePiecesText != null)
+        {
+            Invoke("SetInitialPuzzlePiecesCount", 0.5f);
+        }
     }
 
     private void Update()
@@ -159,6 +158,7 @@ public class PlayerScript : MonoBehaviour
         if (_playerHP <= 0)
         {
             //Destroy(this.gameObject);
+            GameManager.Instance.BeginRestartLevel();
             this.gameObject.SetActive(false);
         }
     }
@@ -174,7 +174,7 @@ public class PlayerScript : MonoBehaviour
         {
             if (canShoot == true)
             {
-                bulletObject = Instantiate(bulletGameObject, bulletTransform.position, bulletTransform.rotation);
+                Instantiate(bulletGameObject, bulletTransform.position, bulletTransform.rotation);
                 shootTimer = timeToShoot;
                 canShoot = false;
                 _playerAmmo--;
@@ -234,6 +234,11 @@ public class PlayerScript : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void SetInitialPuzzlePiecesCount()
+    {
+        _puzzlePiecesText.SetText("Puzzle Pieces Collected: 0/" + GameManager.Instance._puzzlePieces.Count);
     }
 
     public void UpdatePuzzlePiecesCollected()
