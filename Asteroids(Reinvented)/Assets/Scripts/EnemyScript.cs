@@ -44,6 +44,7 @@ public class EnemyScript : MonoBehaviour
         if (player != null)
         {
             _enemyHP--;
+            SoundManager.Instance.audioSource.PlayOneShot(SoundManager.Instance.asteroidBreakSfx);
             Destroy(gameObject);
         }
 
@@ -78,6 +79,7 @@ public class EnemyScript : MonoBehaviour
     {
         if(_enemyHP <= 0)
         {
+            SoundManager.Instance.audioSource.PlayOneShot(SoundManager.Instance.asteroidBreakSfx);
             Destroy(this.gameObject);
         }
 

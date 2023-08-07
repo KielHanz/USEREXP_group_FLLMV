@@ -24,6 +24,7 @@ public class ScrapMenu : MonoBehaviour
             _player.DeductScraps(_repairShipCost);
             _player.Heal(1);
             _repairCost.text = "Cost: " + _repairShipCost + " scraps";
+            SoundManager.Instance.audioSource.PlayOneShot(SoundManager.Instance.repairSfx);
         }
     }
 
@@ -34,6 +35,7 @@ public class ScrapMenu : MonoBehaviour
             _player.DeductScraps(_craftAmmoCost);
             _player.AddAmmo(5);
             _craftCost.text = "Cost: " + _craftAmmoCost + " scraps";
+            SoundManager.Instance.audioSource.PlayOneShot(SoundManager.Instance.craftSfx);
         }
     }
 }

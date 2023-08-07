@@ -46,6 +46,9 @@ public class PlayerScript : MonoBehaviour
     public int scrapCount;
     public TextMeshProUGUI scrapCountText;
 
+    private SoundManager soundManager;
+    private AudioSource audioSource;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         EnemyScript enemy = collision.gameObject.GetComponent<EnemyScript>();
@@ -73,6 +76,9 @@ public class PlayerScript : MonoBehaviour
         scrapCount = 0;
         scrapCountText.SetText(scrapCount.ToString());
 
+        soundManager = SoundManager.Instance.GetComponent<SoundManager>();
+        audioSource = GetComponent<AudioSource>();
+
         if (_puzzlePiecesText != null)
         {
             Invoke("SetInitialPuzzlePiecesCount", 0.5f);
@@ -81,6 +87,11 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance._gameIsPaused)
+        {
+            return;
+        }
+
         GetMousePos();
         if (_playerAmmo > 0)
         {
@@ -170,7 +181,7 @@ public class PlayerScript : MonoBehaviour
             return;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonDown(0))
         {
             if (canShoot == true)
             {
@@ -182,6 +193,9 @@ public class PlayerScript : MonoBehaviour
                 playerAmmoUI.text = "Ammo: " + _playerAmmo.ToString();
 
                 Debug.Log("Ammo Remaining: " + _playerAmmo);
+
+                audioSource.PlayOneShot(soundManager.shootSfx);
+
             }
         }
     }

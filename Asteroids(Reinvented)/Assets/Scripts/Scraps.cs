@@ -13,6 +13,7 @@ public class Scraps : MonoBehaviour
         {
             PlayerScript playerScript = collision.GetComponent<PlayerScript>();
             playerScript.AddScraps(Random.Range(2, 6));
+            SoundManager.Instance.audioSource.PlayOneShot(SoundManager.Instance.pickUpSfx);
             Destroy(gameObject);
         }
     }

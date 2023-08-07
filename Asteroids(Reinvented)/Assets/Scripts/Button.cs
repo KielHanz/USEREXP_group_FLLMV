@@ -23,6 +23,8 @@ public class Button : MonoBehaviour
     private ObjectiveHolder objectiveHolder;
     //public TMP_Text Objective;
 
+    private AudioSource audioSource;
+
     private void Start()
     {
         timeText.enabled = false;
@@ -30,6 +32,7 @@ public class Button : MonoBehaviour
         targetSprite = activateObject.GetComponent<SpriteRenderer>();
         objectCollider = activateObject.GetComponent<BoxCollider2D>();
         objectiveHolder = GetComponent<ObjectiveHolder>();
+        audioSource = activateObject.GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -65,6 +68,7 @@ public class Button : MonoBehaviour
         timeText.enabled = false;
 
         objectCollider.enabled = true;
+        audioSource.PlayOneShot(SoundManager.Instance.doorSfx);
     }
 
     private void OpenDoor()
@@ -78,7 +82,7 @@ public class Button : MonoBehaviour
         objectCollider.enabled = false;
 
         StartCoroutine(DoorTime(timer));
-
+        audioSource.PlayOneShot(SoundManager.Instance.doorSfx);
     }
 
     private void Timer(float time)

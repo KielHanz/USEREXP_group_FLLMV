@@ -12,11 +12,14 @@ public class Lever : MonoBehaviour
     private Color objectAlpha;
     private BoxCollider2D objectCollider;
 
+    private AudioSource audioSource;
+
     private void Start()
     {
         alpha = activateObject.GetComponent<SpriteRenderer>();
         lever = this.GetComponent<SpriteRenderer>();
         objectCollider = activateObject.GetComponent<BoxCollider2D>();
+        audioSource = activateObject.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -40,6 +43,7 @@ public class Lever : MonoBehaviour
         alpha.color = objectAlpha;
 
         objectCollider.enabled = false;
+        audioSource.PlayOneShot(SoundManager.Instance.doorSfx);
 
     }
 

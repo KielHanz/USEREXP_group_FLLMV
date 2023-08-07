@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5118575139763521009}
   - component: {fileID: 5118575139763521011}
   - component: {fileID: 5118575139763521010}
+  - component: {fileID: -781863687819640154}
   m_Layer: 0
   m_Name: Asteroid_Large
   m_TagString: Untagged
@@ -126,3 +127,19 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!58 &-781863687819640154
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5118575139763521008}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2.2

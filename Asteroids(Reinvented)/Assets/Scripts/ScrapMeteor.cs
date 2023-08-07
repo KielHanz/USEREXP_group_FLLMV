@@ -18,11 +18,13 @@ public class ScrapMeteor : MonoBehaviour
             {
                 Instantiate(scrapPrefab, transform.position, Quaternion.identity);
             }
+            SoundManager.Instance.audioSource.PlayOneShot(SoundManager.Instance.scrapBreakSfx);
             Destroy(gameObject);
         }
 
         if (collision.gameObject.GetComponent<PlayerScript>() != null)
         {
+            SoundManager.Instance.audioSource.PlayOneShot(SoundManager.Instance.scrapBreakSfx);
             Destroy(gameObject);
         }
     }
