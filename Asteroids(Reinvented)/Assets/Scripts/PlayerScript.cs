@@ -195,7 +195,6 @@ public class PlayerScript : MonoBehaviour
                 Debug.Log("Ammo Remaining: " + _playerAmmo);
 
                 audioSource.PlayOneShot(soundManager.shootSfx);
-
             }
         }
     }

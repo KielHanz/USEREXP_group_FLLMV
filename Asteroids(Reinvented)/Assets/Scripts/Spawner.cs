@@ -10,21 +10,44 @@ public class Spawner : MonoBehaviour
     public float spawnCollisionCheckradius;
     public float asteroidSpawnCooldown;
     public float currentAsteroidSpawnCooldown;
+    private bool playerIsAlive;
 
     private void Start()
     {
         asteroidSpawnCooldown = 5;
         currentAsteroidSpawnCooldown = asteroidSpawnCooldown;
         spawnCollisionCheckradius = 5;
-        SpawnAsteroid(1);
+        playerIsAlive = true;
+        StartCoroutine(SpawnAsteroidTimer());
     }
 
-    private void Update()
+    public IEnumerator SpawnAsteroidTimer()
     {
-        currentAsteroidSpawnCooldown -= Time.deltaTime;
-        if (currentAsteroidSpawnCooldown <= 0)
+        while (playerIsAlive)
         {
-            SpawnAsteroid(1);
+            float _randomX;
+            float _randomY;
+            Vector3 _randomPosition;
+
+            for (int i = 0; i < 1; i++)
+            {
+                _randomX = Random.Range(-20, 20);
+                _randomY = Random.Range(-16, 16);
+                _randomPosition = new Vector3(_randomX, _randomY, 0);
+
+                if (!Physics2D.OverlapCircle(_randomPosition, spawnCollisionCheckradius))
+                {
+                    GameObject asteroid = Instantiate(asteroidPrefab, _randomPosition, Quaternion.identity);
+                    asteroid.transform.parent = transform;
+
+                    asteroids.Add(asteroid);
+                }
+                else
+                {
+                    i--;
+                }
+            }
+            yield return new WaitForSeconds(asteroidSpawnCooldown);
         }
     }
 

@@ -667,7 +667,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 58136639}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.886463, y: -15.324925, z: 0.14091422}
+  m_LocalPosition: {x: 10.886463, y: -15.324925, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -690,7 +690,7 @@ MonoBehaviour:
   asteroidPrefab: {fileID: 8963564991329188457, guid: 4477d00e4ffc4104ca525198717983ea, type: 3}
   asteroids: []
   spawnCollisionCheckradius: 0
-  asteroidSpawnCooldown: 0
+  asteroidSpawnCooldown: 5
   currentAsteroidSpawnCooldown: 0
 --- !u!4 &72751559 stripped
 Transform:

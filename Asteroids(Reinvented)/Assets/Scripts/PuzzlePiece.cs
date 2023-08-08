@@ -26,8 +26,10 @@ public class PuzzlePiece : MonoBehaviour
             {
                 ObjectiveHolder objective = playerScript.GetComponent<ObjectiveHolder>();
                 objective.ChangeObjectiveColor();
-                OpenDoor();
-
+                if (activateObject != null)
+                {
+                    OpenDoor();
+                }
             }
             Destroy(gameObject);
 
@@ -42,10 +44,12 @@ public class PuzzlePiece : MonoBehaviour
         GameManager.Instance._puzzlePieces.Add(this.gameObject);
 
         //For Gate
-        alpha = activateObject.GetComponent<SpriteRenderer>();
-        objectCollider = activateObject.GetComponent<BoxCollider2D>();
-        audioSource = activateObject.GetComponent<AudioSource>();
-
+        if (activateObject != null)
+        {
+            alpha = activateObject.GetComponent<SpriteRenderer>();
+            objectCollider = activateObject.GetComponent<BoxCollider2D>();
+            audioSource = activateObject.GetComponent<AudioSource>();
+        }
     }
 
     private void OpenDoor()
@@ -55,6 +59,5 @@ public class PuzzlePiece : MonoBehaviour
         alpha.color = objectAlpha;
         objectCollider.enabled = false;
         audioSource.PlayOneShot(SoundManager.Instance.doorSfx);
-
     }
 }

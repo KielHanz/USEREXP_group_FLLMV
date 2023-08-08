@@ -69,10 +69,10 @@ public class EnemyScript : MonoBehaviour
         direction = player.transform.position - this.transform.position;
         travelDirection = direction + new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0);
         travelDirection.Normalize();
+        inner = true;
         asteroidSize = Random.Range(0.3f, 1.3f); //Random.Range(0.3f, 3f);
         _enemyHP = 2 * asteroidSize;
         transform.localScale = new Vector3(asteroidSize, asteroidSize, 0);
-
     }
 
     private void Update()
