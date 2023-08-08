@@ -15,8 +15,6 @@ public class PuzzlePiece : MonoBehaviour
     private AudioSource audioSource;
 
 
-    private int count;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
@@ -28,11 +26,10 @@ public class PuzzlePiece : MonoBehaviour
             {
                 ObjectiveHolder objective = playerScript.GetComponent<ObjectiveHolder>();
                 objective.ChangeObjectiveColor();
-                
+                OpenDoor();
+
             }
-            
             Destroy(gameObject);
-            OpenDoor();
 
         }
     }
