@@ -10,32 +10,36 @@ public class Spawner : MonoBehaviour
     public float spawnCollisionCheckradius;
     public float asteroidSpawnCooldown;
     public float currentAsteroidSpawnCooldown;
+    public int asteroidSpawnCount;
 
     private void Start()
     {
         asteroidSpawnCooldown = 5;
         currentAsteroidSpawnCooldown = asteroidSpawnCooldown;
         spawnCollisionCheckradius = 5;
-        SpawnAsteroid(1);
+        InvokeRepeating("SpawnAsteroid", 1.0f, 1.0f);
     }
 
     private void Update()
     {
+        /*
         currentAsteroidSpawnCooldown -= Time.deltaTime;
         if (currentAsteroidSpawnCooldown <= 0)
         {
             SpawnAsteroid(1);
         }
+        */
     }
 
-    public void SpawnAsteroid(int count)
+    public void SpawnAsteroid() //int count
     {
         float _randomX;
         float _randomY;
         Vector3 _randomPosition;
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < asteroidSpawnCount; i++) //count
         {
+            Debug.Log("Test");
             _randomX = Random.Range(-20, 20);
             _randomY = Random.Range(-16, 16);
             _randomPosition = new Vector3(_randomX, _randomY, 0);

@@ -1460,19 +1460,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4751956202900784439, guid: 1dabc6fc312cfa74c906464e759801ee, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.51503813
+      value: -0.88431853
       objectReference: {fileID: 0}
     - target: {fileID: 4751956202900784439, guid: 1dabc6fc312cfa74c906464e759801ee, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4751956202900784439, guid: 1dabc6fc312cfa74c906464e759801ee, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4751956202900784439, guid: 1dabc6fc312cfa74c906464e759801ee, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.8571673
+      value: 0.46688405
       objectReference: {fileID: 0}
     - target: {fileID: 4751956202900784439, guid: 1dabc6fc312cfa74c906464e759801ee, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1484,7 +1484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4751956202900784439, guid: 1dabc6fc312cfa74c906464e759801ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 118
+      value: 304.336
       objectReference: {fileID: 0}
     - target: {fileID: 4751956202965525948, guid: 1dabc6fc312cfa74c906464e759801ee, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6460,6 +6460,7 @@ MonoBehaviour:
   spawnCollisionCheckradius: 0
   asteroidSpawnCooldown: 0
   currentAsteroidSpawnCooldown: 0
+  asteroidSpawnCount: 1
 --- !u!1 &444908542
 GameObject:
   m_ObjectHideFlags: 0
@@ -8084,7 +8085,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -35.42, y: 25.84, z: -10}
+  m_LocalPosition: {x: 34.7, y: -29.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8796,7 +8797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552836379}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.509995, y: 25.439999, z: 0}
+  m_LocalPosition: {x: 33.61, y: -29.500004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8949,8 +8950,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 552836381}
-  _repairShipCost: 10
-  _craftAmmoCost: 15
+  _repairShipCost: 15
+  _craftAmmoCost: 10
   _repairCost: {fileID: 706805672}
   _craftCost: {fileID: 539232038}
 --- !u!82 &552836386
@@ -14186,7 +14187,7 @@ PrefabInstance:
     - target: {fileID: 4751956202654524946, guid: 1dabc6fc312cfa74c906464e759801ee, type: 3}
       propertyPath: activateObject
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2088644013}
     - target: {fileID: 4751956202654524947, guid: 1dabc6fc312cfa74c906464e759801ee, type: 3}
       propertyPath: m_Name
       value: Button 5 (1)
