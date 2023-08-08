@@ -10,55 +10,36 @@ public class Spawner : MonoBehaviour
     public float spawnCollisionCheckradius;
     public float asteroidSpawnCooldown;
     public float currentAsteroidSpawnCooldown;
-    private bool playerIsAlive;
+    public int asteroidSpawnCount;
 
     private void Start()
     {
         asteroidSpawnCooldown = 5;
         currentAsteroidSpawnCooldown = asteroidSpawnCooldown;
         spawnCollisionCheckradius = 5;
-        playerIsAlive = true;
-        StartCoroutine(SpawnAsteroidTimer());
+        InvokeRepeating("SpawnAsteroid", 1.0f, 1.0f);
     }
 
-    public IEnumerator SpawnAsteroidTimer()
+    private void Update()
     {
-        while (playerIsAlive)
+        /*
+        currentAsteroidSpawnCooldown -= Time.deltaTime;
+        if (currentAsteroidSpawnCooldown <= 0)
         {
-            float _randomX;
-            float _randomY;
-            Vector3 _randomPosition;
-
-            for (int i = 0; i < 1; i++)
-            {
-                _randomX = Random.Range(-20, 20);
-                _randomY = Random.Range(-16, 16);
-                _randomPosition = new Vector3(_randomX, _randomY, 0);
-
-                if (!Physics2D.OverlapCircle(_randomPosition, spawnCollisionCheckradius))
-                {
-                    GameObject asteroid = Instantiate(asteroidPrefab, _randomPosition, Quaternion.identity);
-                    asteroid.transform.parent = transform;
-
-                    asteroids.Add(asteroid);
-                }
-                else
-                {
-                    i--;
-                }
-            }
-            yield return new WaitForSeconds(asteroidSpawnCooldown);
+            SpawnAsteroid(1);
         }
+        */
     }
 
-    public void SpawnAsteroid(int count)
+    public void SpawnAsteroid() //int count
     {
         float _randomX;
         float _randomY;
         Vector3 _randomPosition;
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < asteroidSpawnCount; i++) //count
         {
+            Debug.Log("Test");
             _randomX = Random.Range(-20, 20);
             _randomY = Random.Range(-16, 16);
             _randomPosition = new Vector3(_randomX, _randomY, 0);
