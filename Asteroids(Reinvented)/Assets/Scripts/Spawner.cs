@@ -17,18 +17,7 @@ public class Spawner : MonoBehaviour
         asteroidSpawnCooldown = 5;
         currentAsteroidSpawnCooldown = asteroidSpawnCooldown;
         spawnCollisionCheckradius = 5;
-        InvokeRepeating("SpawnAsteroid", 1.0f, 1.0f);
-    }
-
-    private void Update()
-    {
-        /*
-        currentAsteroidSpawnCooldown -= Time.deltaTime;
-        if (currentAsteroidSpawnCooldown <= 0)
-        {
-            SpawnAsteroid(1);
-        }
-        */
+        InvokeRepeating("SpawnAsteroid", 3.0f, 3.0f);
     }
 
     public void SpawnAsteroid() //int count

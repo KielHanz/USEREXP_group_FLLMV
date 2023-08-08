@@ -86,7 +86,7 @@ public class EnemyScript : MonoBehaviour
         //Meant for asteroids inside level
         if(inner == true)
         {
-            distanceSub = 40;
+            distanceSub = 30;
         }
 
         if(Mathf.Abs(this.transform.position.x - player.transform.position.x) >= distanceSub ||

@@ -40,9 +40,10 @@ public class GameManager : MonoBehaviour
         Invoke("RestartLevel", 1f);
     }
 
-    private void RestartLevel()
+    public void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1f;
     }
 
     private void Pause()
