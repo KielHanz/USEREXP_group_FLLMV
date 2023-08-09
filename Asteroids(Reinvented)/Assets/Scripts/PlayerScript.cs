@@ -275,12 +275,12 @@ public class PlayerScript : MonoBehaviour
 
     public void SetInitialPuzzlePiecesCount()
     {
-        _puzzlePiecesText.SetText("Puzzle Pieces Collected: 0/" + GameManager.Instance._puzzlePieces.Count);
+        _puzzlePiecesText.SetText("Collect Gate Parts: 0/" + GameManager.Instance._puzzlePieces.Count);
     }
 
     public void UpdatePuzzlePiecesCollected()
     {
         _puzzlePiecesCollected++;
-        _puzzlePiecesText.SetText("Puzzle Pieces Collected: " + _puzzlePiecesCollected + "/" + GameManager.Instance._puzzlePieces.Count);
+        _puzzlePiecesText.SetText("Collect Gate Parts: " + _puzzlePiecesCollected + "/" + GameManager.Instance._puzzlePieces.Count);
     }
 }
