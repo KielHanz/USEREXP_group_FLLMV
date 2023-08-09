@@ -62,7 +62,8 @@ public class PlayerScript : MonoBehaviour
             PlayerTakeDmg(1);
         }
 
-        if (collision.gameObject.GetComponent<StationaryAsteroid>() != null)
+        if (collision.gameObject.GetComponent<StationaryAsteroid>() != null ||
+            collision.gameObject.GetComponent<ScrapMeteor>() != null)
         {
             PlayerTakeDmg(1);
         }

@@ -84,9 +84,9 @@ public class GameManager : MonoBehaviour
 
     public void BeginRestartLevel()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 0.25f;
         soundManager.audioSource.PlayOneShot(soundManager.buttonClickedSfx);
-        Invoke("RestartLevel", 1f);
+        Invoke("RestartLevel", 0.25f);
     }
 
     public void RestartLevel()
