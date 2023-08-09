@@ -13,6 +13,11 @@ public class SoundManager : MonoBehaviour
     public AudioClip pickUpSfx;
     public AudioClip craftSfx;
     public AudioClip repairSfx;
+    public AudioClip wormHoleSfx;
+    public AudioClip buttonHoverSfx;
+    public AudioClip buttonClickedSfx;
+    public AudioClip componentPickupSfx;
+    public AudioClip shipExplosionSfx;
 
     public AudioSource audioSource;
 

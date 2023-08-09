@@ -13,7 +13,7 @@ public class PuzzlePiece : MonoBehaviour
     private BoxCollider2D objectCollider;
 
     private AudioSource audioSource;
-
+    private SoundManager soundManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -31,6 +31,7 @@ public class PuzzlePiece : MonoBehaviour
                     OpenDoor();
                 }
             }
+            soundManager.audioSource.PlayOneShot(soundManager.componentPickupSfx);
             Destroy(gameObject);
 
         }
@@ -39,6 +40,7 @@ public class PuzzlePiece : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        soundManager = SoundManager.Instance.GetComponent<SoundManager>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = _puzzleSprites[Random.Range(0, 6)];
         GameManager.Instance._puzzlePieces.Add(this.gameObject);

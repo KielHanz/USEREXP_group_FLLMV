@@ -25,6 +25,7 @@ public class ScrapMenu : MonoBehaviour
             _player.Heal(1);
             _repairCost.text = "Cost: " + _repairShipCost + " scraps";
             SoundManager.Instance.audioSource.PlayOneShot(SoundManager.Instance.repairSfx);
+            SoundManager.Instance.audioSource.volume = 0.2f;
         }
     }
 

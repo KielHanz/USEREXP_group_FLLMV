@@ -46,8 +46,13 @@ public class PlayerScript : MonoBehaviour
     public int scrapCount;
     public TextMeshProUGUI scrapCountText;
 
+    [SerializeField] private GameObject shipExplosionPrefab;
+
+    private bool isDead;
+    private GameManager gameManager;
     private SoundManager soundManager;
     private AudioSource audioSource;
+    private Animator animator;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -65,14 +70,18 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
+        gameManager = GameManager.Instance.GetComponent<GameManager>();
+        gameManager.InitializePlayer(this);
+
         playerBody = GetComponent<Rigidbody2D>();
 
+        animator = GetComponent<Animator>();
         _puzzlePiecesCollected = 0;
         isAlive = true;
         canShoot = false;
         _maxHp = 3;
         _playerHP = _maxHp;
-        playerAmmoUI.text = "Ammo: " + _playerAmmo.ToString();
+        playerAmmoUI.text = _playerAmmo.ToString();
         scrapCount = 0;
         scrapCountText.SetText(scrapCount.ToString());
 
@@ -88,6 +97,11 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
         if (GameManager.Instance._gameIsPaused)
+        {
+            return;
+        }
+
+        if (isDead)
         {
             return;
         }
@@ -116,6 +130,12 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            return;
+        }
+
         PlayerMovement();
     }
 
@@ -168,9 +188,12 @@ public class PlayerScript : MonoBehaviour
 
         if (_playerHP <= 0)
         {
-            //Destroy(this.gameObject);
-            GameManager.Instance.BeginRestartLevel();
-            this.gameObject.SetActive(false);
+            isDead = true;
+            soundManager.audioSource.PlayOneShot(soundManager.shipExplosionSfx);
+            animator.SetTrigger("isDead");
+            playerBody.drag = 100;
+            transform.rotation = Quaternion.Euler(0,0,0);
+
         }
     }
 
@@ -190,7 +213,7 @@ public class PlayerScript : MonoBehaviour
                 canShoot = false;
                 _playerAmmo--;
 
-                playerAmmoUI.text = "Ammo: " + _playerAmmo.ToString();
+                playerAmmoUI.text = _playerAmmo.ToString();
 
                 Debug.Log("Ammo Remaining: " + _playerAmmo);
 
@@ -215,7 +238,7 @@ public class PlayerScript : MonoBehaviour
     public void AddAmmo(int amount)
     {
         _playerAmmo += amount;
-        playerAmmoUI.text = "Ammo: " + _playerAmmo.ToString();
+        playerAmmoUI.text = _playerAmmo.ToString();
     }
 
     public void Heal(int amount)
