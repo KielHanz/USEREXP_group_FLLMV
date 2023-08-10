@@ -3831,7 +3831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &349250804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4497,7 +4497,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &439586042
 Transform:
   m_ObjectHideFlags: 0
@@ -5442,7 +5442,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.78, y: -2, z: -10}
+  m_LocalPosition: {x: -16.779999, y: -1.9000006, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6405,7 +6405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: -50.6, y: -50}
   m_SizeDelta: {x: 240, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &570287049
@@ -20708,11 +20708,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6812188153571610396, guid: f674fae1dda0a7a4ba5cbca6fdd500d0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.2
+      value: -24.2
       objectReference: {fileID: 0}
     - target: {fileID: 6812188153571610396, guid: f674fae1dda0a7a4ba5cbca6fdd500d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.4
+      value: -1.3
       objectReference: {fileID: 0}
     - target: {fileID: 6812188153571610396, guid: f674fae1dda0a7a4ba5cbca6fdd500d0, type: 3}
       propertyPath: m_LocalPosition.z

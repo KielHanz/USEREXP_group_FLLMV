@@ -69,7 +69,7 @@ public class EnemyScript : MonoBehaviour
         direction = player.transform.position - this.transform.position;
         travelDirection = direction + new Vector3(Random.Range(-5f, 5f), Random.Range(-5f, 5f), 0);
         travelDirection.Normalize();
-        inner = true;
+        //inner = true;
         asteroidSize = Random.Range(0.3f, 1.3f); //Random.Range(0.3f, 3f);
         _enemyHP = 2 * asteroidSize;
         transform.localScale = new Vector3(asteroidSize, asteroidSize, 0);
@@ -84,13 +84,13 @@ public class EnemyScript : MonoBehaviour
         }
 
         //Meant for asteroids inside level
-        if(inner == true)
+        if(inner == false)
         {
             distanceSub = 30;
         }
 
-        if(Mathf.Abs(this.transform.position.x - player.transform.position.x) >= distanceSub ||
-            Mathf.Abs(this.transform.position.y - player.transform.position.y) >= distanceSub) // both 20
+        if((Mathf.Abs(this.transform.position.x - player.transform.position.x) >= distanceSub ||
+            Mathf.Abs(this.transform.position.y - player.transform.position.y) >= distanceSub) && inner == false) // both 20
         {
             Destroy(gameObject);
         }
